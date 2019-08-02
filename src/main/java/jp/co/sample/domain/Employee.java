@@ -1,8 +1,9 @@
 package jp.co.sample.domain;
 
 /**
- * @author yuma.watanabe
  * 従業員を表すクラスです.
+ * 
+ * @author yuma.watanabe
  */
 public class Employee {
 	/**

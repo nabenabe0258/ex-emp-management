@@ -9,23 +9,22 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
 
 /**
+ * 従業員のRepositoryを表すクラスです.
+ * 
  * @author yuma.watanabe
- *従業員のRepositoryを表すクラスです
  */
 @Repository
-@RequestMapping("/employee")
+
 public class EmployeeRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
-	
-	private final static RowMapper<Employee> EMPLOYEE_ROW_MAPPER = (rs,i)->{
+
+	private final static RowMapper<Employee> EMPLOYEE_ROW_MAPPER = (rs, i) -> {
 		Employee employee = new Employee();
 		employee.setId(rs.getInt("id"));
 		employee.setName(rs.getString("name"));
@@ -40,41 +39,40 @@ public class EmployeeRepository {
 		employee.setCharacteristics(rs.getString("characteristics"));
 		employee.setDependentsCount(rs.getInt("dependents_count"));
 		return employee;
-		
+
 	};
-	
+
 	/**
-	 * @return　全従業員一覧
+	 * @return 全従業員一覧
 	 */
-	@RequestMapping("/findAll")
-	public List<Employee> findAll(){
-		
+
+	public List<Employee> findAll() {
+
 		String findAllSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count";
 		List<Employee> employeeList = template.query(findAllSql, EMPLOYEE_ROW_MAPPER);
 		return employeeList;
 	}
-	
+
 	/**
-	 * @param id
-	 * @return　idで指定された従業員の検索
+	 * @param id 従業員Id
+	 * @return 従業員Idから従業員情報の取得
 	 */
-	@RequestMapping("/load")
-		public Employee load(Integer id) {
-			String loadSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count"
-					+ "WHERE id=:id";
-			SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);		
-			Employee employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
-			return employee;
-		}
+
+	public Employee load(Integer id) {
+		String loadSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count"
+				+ "WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		Employee employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
+		return employee;
+	}
+
 	/**
-	 * @param employee
+	 * @param employee　従業員オブジェクト
 	 */
-	@RequestMapping("/update")
-		public void update(Employee employee) {
-			SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
-			String updateSql = "UPDATE employee SET dependents_count=:dependmentsCount WHERE id ="+employee.getId();
-			template.update(updateSql, param);
-		}
+
+	public void update(Employee employee) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
+		String updateSql = "UPDATE employee SET dependents_count=:dependmentsCount WHERE id =:id";
+		template.update(updateSql, param);
+	}
 }
-
-

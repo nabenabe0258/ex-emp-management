@@ -1,33 +1,24 @@
-package jp.co.sample.domain;
+package jp.co.sample.form;
+
 
 /**
- * 管理者情報を表すクラスです.
- *
  * @author yuma.watanabe
+ * 管理者情報を入力フォームから受け取るためのFormクラスです
  */
-public class Administrator {
-	/** 管理者id */
-	private Integer id;
+public class InsertAdministratorForm {
+
 	/**
-	 * 管理者名
+	 * 管理者の名前
 	 */
 	private String name;
 	/**
-	 * 管理者メールアドレス
+	 * 管理者のメールアドレス
 	 */
 	private String mailAddress;
 	/**
-	 * 管理者パスワード
+	 * 管理者のパスワード
 	 */
 	private String password;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -55,8 +46,7 @@ public class Administrator {
 
 	@Override
 	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
+		return "InsertAdministrationForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
 				+ "]";
 	}
-
 }

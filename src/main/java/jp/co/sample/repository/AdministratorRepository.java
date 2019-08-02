@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.sample.domain.Administrator;
 
 /**
+ * 従業員のRepositoryを表すクラスです.
+ * 
  * @author yuma.watanabe
- *従業員のRepositoryを表すクラスです.
  */
 @Repository
-@RequestMapping("/administrator")
+@RequestMapping("/administrator_repository")
 public class AdministratorRepository {
 
 	/**
@@ -37,7 +38,9 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * @param administrator 
+	 * 管理者情報を登録する.
+	 * 
+	 * @param administrator 管理者情報 
 	 */
 	@RequestMapping("/insert")
 	public void insert(Administrator administrator) {
@@ -47,9 +50,11 @@ public class AdministratorRepository {
 	}
 
 	/**
-	 * @param mailAddress
-	 * @param password
-	 * @return メールアドレスとパスワードで指定された管理者の検索結果
+	 * メールアドレスとパスワードから管理者情報を検索する.
+	 * 
+	 * @param mailAddress メールアドレス
+	 * @param password　パスワード
+	 * @return 管理者情報(もし存在しなければnullが返る)
 	 */
 	@RequestMapping("/findby")
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
