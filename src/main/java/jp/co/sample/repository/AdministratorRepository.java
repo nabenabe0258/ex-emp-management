@@ -13,10 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 
+/**
+ * @author yuma.watanabe
+ *従業員のRepositoryを表すクラスです.
+ */
 @Repository
 @RequestMapping("/administrator")
 public class AdministratorRepository {
 
+	/**
+	 *データベースを操作するオブジェクトの参照変数の注入
+	 */
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
@@ -29,6 +36,9 @@ public class AdministratorRepository {
 		return administrator;
 	};
 
+	/**
+	 * @param administrator 
+	 */
 	@RequestMapping("/insert")
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
@@ -36,6 +46,11 @@ public class AdministratorRepository {
 		template.update(insertSql, param);
 	}
 
+	/**
+	 * @param mailAddress
+	 * @param password
+	 * @return メールアドレスとパスワードで指定された管理者の検索結果
+	 */
 	@RequestMapping("/findby")
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 		String findbySql = "SELECT id,name,mail_address,password FROM administrator WHERE mail_address=:mailAddress password=:password";

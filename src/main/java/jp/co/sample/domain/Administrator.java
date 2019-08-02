@@ -1,9 +1,25 @@
 package jp.co.sample.domain;
 
+/**
+ * @author yuma.watanabe
+ *従業員情報を表すクラスです.
+ */
 public class Administrator {
+	/**
+	 *管理者id
+	 */
 	private Integer id;
+	/**
+	 * 管理者名
+	 */
 	private String name;
+	/**
+	 * 管理者メールアドレス
+	 */
 	private String mailAddress;
+	/**
+	 * 管理者パスワード
+	 */
 	private String password;
 
 	public Integer getId() {

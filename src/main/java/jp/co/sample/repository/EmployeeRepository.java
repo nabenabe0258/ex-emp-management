@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
 
+/**
+ * @author yuma.watanabe
+ *従業員のRepositoryを表すクラスです
+ */
 @Repository
 @RequestMapping("/employee")
 public class EmployeeRepository {
@@ -39,6 +43,9 @@ public class EmployeeRepository {
 		
 	};
 	
+	/**
+	 * @return　全従業員一覧
+	 */
 	@RequestMapping("/findAll")
 	public List<Employee> findAll(){
 		
@@ -47,6 +54,10 @@ public class EmployeeRepository {
 		return employeeList;
 	}
 	
+	/**
+	 * @param id
+	 * @return　idで指定された従業員の検索
+	 */
 	@RequestMapping("/load")
 		public Employee load(Integer id) {
 			String loadSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count"
@@ -55,10 +66,13 @@ public class EmployeeRepository {
 			Employee employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
 			return employee;
 		}
+	/**
+	 * @param employee
+	 */
 	@RequestMapping("/update")
 		public void update(Employee employee) {
 			SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
-			String updateSql = "UPDATE employee SET dependents_count=:dependmentsCount WHERE id = employee.getId()";
+			String updateSql = "UPDATE employee SET dependents_count=:dependmentsCount WHERE id ="+employee.getId();
 			template.update(updateSql, param);
 		}
 }

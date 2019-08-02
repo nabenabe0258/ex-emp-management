@@ -1,17 +1,57 @@
 package jp.co.sample.domain;
 
+/**
+ * @author yuma.watanabe
+ * 従業員を表すクラスです.
+ */
 public class Employee {
+	/**
+	 * 従業員Id
+	 */
 	private Integer id;
+	/**
+	 * 従業員名前
+	 */
 	private String name;
+	/**
+	 * 従業員の画像
+	 */
 	private String image;
+	/**
+	 * 従業員の性別
+	 */
 	private String gender;
+	/**
+	 * 従業員の雇用開始日
+	 */
 	private java.util.Date hireDate;
+	/**
+	 * 従業員のメールアドレス
+	 */
 	private String mailAddress;
+	/**
+	 * 従業員の郵便番号
+	 */
 	private String zipCode;
+	/**
+	 * 従業員の住所
+	 */
 	private String address;
+	/**
+	 * 従業員の電話番号
+	 */
 	private String telephone;
+	/**
+	 * 従業員の給料
+	 */
 	private Integer salary;
+	/**
+	 * 従業員の特性
+	 */
 	private String characteristics;
+	/**
+	 *従業員の扶養人数
+	 */
 	private Integer dependentsCount;
 
 	public Integer getId() {
