@@ -23,5 +23,7 @@ public class AdministratorController {
 	public String toInsert() {
 		return "administrator/insert";
 	}
+	
+	
 
 }
