@@ -23,7 +23,7 @@ import jp.co.sample.domain.Administrator;
 public class AdministratorRepository {
 
 	/**
-	 *データベースを操作するオブジェクトの参照変数の注入
+	 *　データベース操作を表す定数
 	 */
 	@Autowired
 	private NamedParameterJdbcTemplate template;
@@ -38,7 +38,7 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * 管理者情報を登録する.
+	 * 管理者情報の登録.
 	 * 
 	 * @param administrator 管理者情報 
 	 */
@@ -50,7 +50,7 @@ public class AdministratorRepository {
 	}
 
 	/**
-	 * メールアドレスとパスワードから管理者情報を検索する.
+	 * 管理者情報の１件検索
 	 * 
 	 * @param mailAddress メールアドレス
 	 * @param password　パスワード
@@ -58,10 +58,10 @@ public class AdministratorRepository {
 	 */
 	@RequestMapping("/findby")
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String findbySql = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address=:mailAddress password=:password";
+		String findbySql = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address=:mailAddress AND password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
 		List<Administrator> administratorList = template.query(findbySql, param, ADMINISTRATOR_LOW_MAPPER);
-		if (administratorList.get(0) == null) {
+		if (administratorList.size()==0) {
 			return null;
 
 		} else {

@@ -2,8 +2,9 @@ package jp.co.sample.form;
 
 
 /**
+ * 管理者情報を入力フォームから受け取るためのFormクラスです.
+ * 
  * @author yuma.watanabe
- * 管理者情報を入力フォームから受け取るためのFormクラスです
  */
 public class InsertAdministratorForm {
 
