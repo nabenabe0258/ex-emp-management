@@ -8,20 +8,22 @@ import jp.co.sample.domain.Administrator;
 import jp.co.sample.repository.AdministratorRepository;
 
 /**
- * @author yuma.watanabe 管理者の情報を操作するServiceクラスです
+ * 管理者の情報を操作するServiceクラスです.
+ * 
+ * @author yuma.watanabe 
  */
 @Transactional
 @Service
 public class AdministratorService {
 
 	/**
-	 * AdministratorRepositoryオブジェクトの参照を注入
+	 * AdministratorRepositoryオブジェクトの参照を注入.
 	 */
 	@Autowired
 	private AdministratorRepository administratorRepository;
 
 	/**
-	 * 管理者情報をAdministratorRepositoryクラスのInsertメソッドに挿入
+	 * 管理者情報をAdministratorRepositoryクラスのInsertメソッドに挿入.
 	 * 
 	 * @param administrator　管理者情報
 	 */
